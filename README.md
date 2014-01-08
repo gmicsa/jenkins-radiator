@@ -21,7 +21,7 @@ Setup
     - for mock mode: nothing to change
     - for Jenkins integration mode: set your job names inside jobNames array in info_radiator.js
 4. start the server
-    - `node server.js configuration`
-    - for mock mode: configuration is mock
-    - for Jenkins integration mode: configuration is `your_config_name`
+    - `node server.js <configuration>`
+    - for mock mode: `configuration` is `mock`
+    - for Jenkins integration mode: `configuration` is `your_config_name`
 5. go to http://localhost:8888
