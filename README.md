@@ -1,7 +1,7 @@
 jenkins-radiator
 ================
 
-An light information radiator for Jenkins made with Node.js and Angular.js
+A light information radiator for Jenkins made with Node.js and Angular.js
 
 Setup
 ======
