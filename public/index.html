@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Jenkins Information Radiator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+		
+        <link rel="stylesheet" href="css/main.css">
+        <script type="text/javascript" src="http://www.modernizr.com/downloads/modernizr-2.0.4.js"></script>
+		<script type="text/javascript" src="js/vendor/angular.js"></script>
+		<script type="text/javascript" src="js/vendor/ui-bootstrap-0.7.0.js"></script>
+		<script type="text/javascript" src="js/vendor/ui-bootstrap-tpls-0.7.0.js"></script>
+		<script type="text/javascript" src="js/info_radiator.js"></script>
+    </head>
+    <body ng-app="info_radiator" ng-cloak>
+        <div id="timePanel" class="grey" ng-controller="TimeCtrl">
+            {{time | date : 'HH'}}<span id="dots" ng-show="showDots">:</span>{{time | date : 'mm'}}
+        </div>
+
+        <div id="weatherPanel" ng-controller="WeatherCtrl">
+            <iframe ng-src="{{weatherSource}}" seamless="true" scrolling="no" width="100%" frameborder="0"></iframe>
+        </div>
+
+        <div style="clear: both"></div>
+
+        <div id="jobsPanel" ng-controller="JenkinsCtrl">
+            <div ng-repeat="job in jobs | orderBy:jobPrioritySorter" class="job {{job.status}}">
+                <div>{{job.name}}</div>
+                <div ng-show="job.status === 'red' || job.status === 'yellow'" class="jobSubtitle">
+                    <ul ng-show="job.changes">
+                        <li ng-repeat="change in job.changes">{{change}}</li>
+                    </ul>
+                </div>
+                <div ng-show="job.status === 'blue' || job.status === 'redBlink'" class="jobSubtitle">
+                    <div ng-show="job.runningDuration < 3600000">{{job.runningDuration | date : 'mm'}}m:{{job.runningDuration | date : 'ss'}}s</div>
+                    <div ng-show="job.runningDuration >= 3600000">More than 1 hour</div>
+                    <div ng-show="job.status == 'blue'" class="progressContainer"><progress percent="job.durationPercentage" class="progress-striped active"></progress></div>
+                </div>
+                <div ng-show="job.status !== 'green' && job.startedBy" class="jobSubtitle">Started by {{job.startedBy}}</div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,9 @@
+{
+    "name": "jenkins-radiator",
+    "description": "An information radiator for Jenkins made with Node.js and Angular.js",
+    "author": "Georgian Micsa <georgian.micsa@gmail.com>",
+    "dependencies": {
+        "express": "3.0.0"
+    },
+    "engine": "node >= v0.10.24"
+}
