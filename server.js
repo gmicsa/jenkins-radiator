@@ -1,7 +1,14 @@
-var express = require('express'), http = require('http'), config = require('./config'), app = express();
+var configuration = process.argv[2];
+if(!configuration){
+    console.log("Please provide the configuration as a parameter.");
+    process.exit(1);
+}
+
+var express = require('express'), http = require('http'), config = require('./' + configuration), app = express();
 
 app.use(express.static(__dirname + '/public'));
 
+console.log("Using configuration " + configuration);
 console.log("Server started on port " + config.port);
 console.log("Jenkins server is " + config.jenkinsHostname + ":" + config.jenkinsPort);
 
