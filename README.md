@@ -3,7 +3,7 @@ jenkins-radiator
 
 A light information radiator for Jenkins made with Node.js and Angular.js
 
-![jenkins-radiator](/img/radiator.PNG "jenkins-radiator")
+![jenkins-radiator](/public/img/radiator.PNG "jenkins-radiator")
 
 Setup
 ======
